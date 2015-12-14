@@ -69,6 +69,12 @@ demo/%.sgx: demo/%.o $(SGX_LIBS)
 non_enclave/%: non_enclave/%.o nonEncLib.o
 	$(CC) $(CFLAGS) $^ -o $@
 
+towncrier/%.o: towncrier/%.c
+	$(CC) -c $(OPENSSL_CFLAGS) -o $@ $<
+
+towncrier/%: towncrier/%.o $(OPENSSL_LIBS)
+	$(CC) $(SGX_LDFLAGS) $< -o $@ $(OPENSSL_LIBS)
+
 clean:
 	rm -f polarssl/*.o lib/*.o *.o $(ALL) test/*.o sgx-runtime.o
 
