@@ -1,13 +1,11 @@
 LDFLAGS=-L/usr/local/opt/openssl/lib
 CPPFLAGS=-I/usr/local/opt/openssl/include
+LIBS=-lssl -lcrypto
 
-main=withssl.c
-min=min.c
+SRC=ssl.c
+BIN=ssl
 
-# all: min
-#	gcc -g $(LDFLAGS) $(CPPFLAGS) -lssl -lcrypto -o ssl $(main)
+all: 
+	gcc -g $(LDFLAGS) $(CPPFLAGS) $(LIBS) -o $(BIN) $(SRC)
 
-min: 
-	gcc -g $(LDFLAGS) $(CPPFLAGS) -lssl -lcrypto -o min $(min)
-
-.PHONY: min
+.PHONY: all
