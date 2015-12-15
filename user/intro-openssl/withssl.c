@@ -141,14 +141,13 @@ int main()
     }
 
     /* set depth */
-    SSL_CTX_set_verify_depth(ctx, 100);
+    SSL_CTX_set_verify_depth(ctx, 50);
     
     if(!SSL_CTX_load_verify_locations(ctx, NULL, store_path))
     {
         fprintf(stderr, "Can't load trusted CA from %s\n", store_path);
         return -1;
     }
-
 
 
     /* Load the trust store */
